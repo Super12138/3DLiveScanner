@@ -35,11 +35,10 @@ jobs:
           # key: ndk-cache
 
       - name: Fix Permissions for Debug Keystore Path
-        if: github.ref != 'refs/heads/main'
         run: sudo chmod -R 777 /home/runner/.config/.android
       
       - name: Build with Gradle
-        run: ./gradlew scanner:assembleRelease
+        run: cd scanner && gradlew assembleRelease
 
       - name: Upload APK
         uses: actions/upload-artifact@v4.6.2
